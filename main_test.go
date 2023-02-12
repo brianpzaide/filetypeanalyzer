@@ -28,20 +28,14 @@ func makeTempDir(fileContents, fileTypes, fileNames []string) error {
 			panic(e)
 		}
 		i++
-
 	}
-
-
-
-
 }
 */
 
-const tempDir = "" //"/home/vagrant/golearningstudio/testingFTA"
+const tempDir = ""
 
-func makeTempFile(dirName string, fileContent /*fileType,*/, fileName string) error {
+func makeTempFile(dirName string, fileContent, fileName string) error {
 	content := []byte(fileContent)
-	//tmpfn := filepath.Join(dirName, strings.Join([]string{fileName, fileType}, "."))
 	tmpfn := filepath.Join(dirName, fileName)
 	err := ioutil.WriteFile(tmpfn, content, 0666)
 	return err
@@ -387,16 +381,11 @@ func TestFileTypeAnalyzer(t *testing.T) {
 
 			for _, em := range tc.expected {
 				exp := strings.Join([]string{dir, em}, "/")
-				//fmt.Println("exp: ", exp)
 				if strings.Contains(out, exp) {
-					//fmt.Println(strings.Join([]string{exp, "PASS"}, "=="))
 				} else {
-					//fmt.Println(strings.Join([]string{exp, "FAIL"}, "=="))
 					t.Errorf(tc.errMessage)
 				}
 			}
-			//fmt.Println(out)
-			//fmt.Println("================================")
 		})
 	}
 
